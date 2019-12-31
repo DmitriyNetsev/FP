@@ -1,0 +1,43 @@
+Московский Технический Университет Связи и Информатики
+Лабораторная работа по функциональному программированию №2
+Разработка приложения Haskel
+
+Выполнил студент
+Группы БВТ1701
+Нетсев Дмитрий
+Проверила Изотова А.
+ 
+
+Индивидуальное задание
+Написать программу, которая копирует или переделывает текст входного текстового файла(ов) так, что бы в начале каждой строки было записано число - количество символов в этой строке.
+Выполнение
+Демонстрация работы программы
+ 
+Описание работы программы
+dumpFile -  функция, которая разбирает файл построчно
+main – функция ввода-вывода, читает имя файла, открывает его и вызывает функцию dumpFile
+Код программы
+import System.IO( Handle, FilePath, IOMode( ReadMode ), 
+                  openFile, hGetLine, hPutStr, hClose, hIsEOF, stderr )
+
+import Control.Monad( when )
+
+
+dumpFile :: Handle -> FilePath -> Integer -> IO ()
+
+dumpFile handle filename lineNumber = do
+    end <- hIsEOF handle
+    when ( not end ) $ do
+        line <- hGetLine handle
+        putStrLn $ show (length line) ++ ": " ++ line
+        dumpFile handle filename $ lineNumber + 1
+
+
+main :: IO ()
+
+main = do
+    hPutStr stderr "Введите имя файла: "
+    filename <- getLine
+    handle <- openFile filename ReadMode
+    dumpFile handle filename 1
+    hClose handle
