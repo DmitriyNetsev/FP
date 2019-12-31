@@ -1,0 +1,93 @@
+Московский Технический Университет Связи и Информатики
+Лабораторная работа по функциональному программированию №2
+Классы типов и реверсивные функции
+
+Выполнил студент
+Группы БВТ1701
+Нетсев Дмитрий
+Проверила Изотова А.
+ 
+Цель работы: Написать программу на языке Haskell, которая продемонстрирует все классы типов и реверсивные функции
+Ход работы: Класс EQ – типы, которые поддерживают проверку равенства.
+Prelude> 7/=10
+True
+Prelude> 1==12
+False
+Prelude> 'a'=='a'
+True
+Класс Ord – типы, которые поддерживают сравнение.
+Prelude> 17>17
+False
+Prelude> 12>11
+True
+Prelude> "sdfghn"<"asdfghm"
+False
+Класс Show – типы, которые могут быть представлены как строчки.
+Prelude> show 11
+"11"
+Prelude> show True
+"True"
+Класс Read – типы, которые могут быть представлены, как числа\логические значения, с которыми будут проведены действия.
+Prelude> read "2"+54
+56
+Prelude> read "1" + read "5"
+6
+Prelude> read "True" || False
+True
+Prelude> read "2"
+*** Exception: Prelude.read: no parse
+Prelude> read"4"::Float
+4.0
+Класс Enum – последовательно упорядоченные типы, списки.
+Prelude> ['d'..'j']
+"defghij"
+Prelude> [4..8]
+[4,5,6,7,8]
+Prelude> pred 'h'
+'g'
+Класс Bounded – типы, имеющие границы.
+Prelude> maxBound::Int
+9223372036854775807
+Prelude> minBound::Float
+
+<interactive>:32:1: error:
+    • No instance for (Bounded Float) arising from a use of ‘minBound’
+    • In the expression: minBound :: Float
+      In an equation for ‘it’: it = minBound :: Float
+Prelude> minBound::Char
+'\NUL'
+Prelude> maxBound::Bool
+True
+Класс Num – числа.
+Prelude> 3::Int
+3
+Prelude> 23::Float
+23.0
+Класс Floating – числа, с плавающей точкой
+Prelude> sin(3.14)
+1.5926529164868282e-3
+Prelude> cos(0)
+1.0
+Класс Integral – целые числа.
+Prelude> fromIntegral (length [2,3,4]) + 2.2
+5.2
+Функция replicate – возвращает список из N элементов A
+Prelude> replicate 4 6
+[6,6,6,6]
+Функция take – выводит определённое число первых элементов списка
+Prelude> take 3 [1,2,3,4,5,6,7]
+[1,2,3]
+Функция reverse – разворачивает список
+Prelude> reverse [1,2,3,4,5,6]
+[6,5,4,3,2,1]
+Функция repeat – выводит бесконечный список из элемента А
+Prelude>prelude 2
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,Prelude> Interrupted.
+Функция zip – реализует список из пар элементов списков.
+Prelude> zip [1,2,3,4] ['a','b','c','d','e']
+[(1,'a'),(2,'b'),(3,'c'),(4,'d')]
+Функция elem – проверяет, есть ли в списке элемент А.
+Prelude> elem 'd' ['a','b','c','d']
+True
+Prelude> elem 'd' ['a','b','c']
+False
